@@ -9,6 +9,7 @@ import hello.core.member.MemberServiceImpl;
 import hello.core.member.MemoryMemberRepository;
 import hello.core.order.OrderService;
 import hello.core.order.OrderServiceImpl;
+import org.apache.commons.logging.Log;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -49,3 +50,7 @@ public class AppConfig {
 // 일반적으로 빈의 이름이 같으면 문제가 복잡해지니까 그냥 빈의 이름은 유니크하게 관리하자!!
 
 // 스프링 컨테이너 사용시 자동으로 싱글톤 컨테이너 방식으로 객체를 생성해준다
+
+// 스프링이 CGLIB라는 바이트코드 조작 라이브러리를 사용해서 우리가 만든 AppConfig 클래스를 상속받은 임의의 클래스를 만들고 그 클래스를 스프링 빈으로 등록하였다
+// CGLIB 내부에서 우리의 Bean들이 싱글톤이 되도록 보장 했을 것이다
+// (Bean 어노테이션만 사용해도 빈은 등록되지만 CGLIB의 도움을 받아 싱글톤 패턴으로 하고 싶으면 Configuration 어노테이션을 사용해야 한다

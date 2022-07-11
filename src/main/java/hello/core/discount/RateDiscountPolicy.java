@@ -2,7 +2,10 @@ package hello.core.discount;
 
 import hello.core.member.Grade;
 import hello.core.member.Member;
+import org.springframework.stereotype.Component;
 
+//@Component("memberService2") 이렇게하면 특정 이름 지정 가능
+@Component
 public class RateDiscountPolicy implements DiscountPolicy {
     final private int discountPercent=10;
 
