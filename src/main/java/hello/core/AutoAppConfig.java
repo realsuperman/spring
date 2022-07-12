@@ -20,10 +20,10 @@ import org.springframework.context.annotation.FilterType;
          */
 )
 public class AutoAppConfig {
-    @Bean(name="memoryMemberRepository")
+/*    @Bean(name="memoryMemberRepository")
     MemberRepository memberRepository(){
         return new MemoryMemberRepository();
-    }
+    }*/
 }
 
 // 참고로 스프링 부트를 사용하면 이러한 Config정보를 만들 필요가 없다(왜냐면 스프링 부트 메인 프로그램인 CoreApplication에서 컴포넌트 스캔을 하기 때문이다 정확히는 @SpringBootApplication)
