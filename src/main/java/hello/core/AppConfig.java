@@ -30,8 +30,7 @@ public class AppConfig {
     @Bean
     public OrderService orderService(){
         // 1번 :  return new OrderServiceImpl(new MemberRepository(),new FixDiscountPolicy())
-        //return new OrderServiceImpl(memberRepository(),discountPolicy());
-        return null;
+        return new OrderServiceImpl(memberRepository(),discountPolicy());
     }
 
     @Bean
