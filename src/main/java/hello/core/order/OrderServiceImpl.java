@@ -8,21 +8,31 @@ import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor // 필수값인 final 속성에 대한 생성자를 자동으로 만들어준다
+//@RequiredArgsConstructor // 필수값인 final 속성에 대한 생성자를 자동으로 만들어준다
 public class OrderServiceImpl implements OrderService {
     //@Autowired
     private final MemberRepository memberRepository;
     //@Autowired
     private final DiscountPolicy discountPolicy;
 
-    //@Autowired // 생성자 주입의 경우 딱 1번만 호출됨이 보장된다(불변) -> 이렇게만 짜면 해당 값이 안바뀜
-    // 이 사례처럼 생성자가 1개만 있는경우(변수값개수말고) Autowired생략 가능
-/*    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
+    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;
+        // Qualifier로 특정 대상을 가져오게 할 수 있다(파라미터 앞에다 씀) 그 대상에도 Qualifier를 해주어야 함
+    }
+//@Autowired // 생성자 주입의 경우 딱 1번만 호출됨이 보장된다(불변) -> 이렇게만 짜면 해당 값이 안바뀜
+    // 이 사례처럼 생성자가 1개만 있는경우(변수값개수말고) Autowired생략 가능
+/*    public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy rateDiscountPolicy) {
+        this.memberRepository = memberRepository;
+        this.discountPolicy = rateDiscountPolicy;
+        *//* 만약 조회되는 빈이 여러개라면 Autowired가 있는 부분에서 이름을 조회할 빈으로 사용하면 된다
+           스프링은 처음에 DiscountPolicy로 조회한다 여기서 1개면 상관이 없는데 여러개면 파라미터의 이름으로
+           재조회를 한다 여기서는 rateDiscountPolicy로 조회한다는 의미다 그랬을 때 1개가 나왔으므로 끝낸다
+         *//*
     }*/
 
     //@Autowired(required = =false) 필수 여부를 no로 하였다(꼭 안넣어줘도 된다)
