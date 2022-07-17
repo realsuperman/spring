@@ -19,4 +19,20 @@ http는 stateless하다
 
 http의 구조는 시작 라인(GET /search?q=hello )과 헤더(host : https://www.google.com)와 CRLF(필수)랑 body로 구성된다
 요청시 메소드 종류에 맞게 바디를 사용할 수 있고(POST) 사용하지 않을 수 있다(GET) 응답의 경우 시작 라인에 메시지를 떨궈주고
-헤더에는 콘텍스트의 길이(html의 길이 등) CRLF는 빈 값 그리고 바디에 HTML의 값을 리턴한다 
+헤더에는 콘텍스트의 길이(html의 길이 등) CRLF는 빈 값 그리고 바디에 HTML의 값을 리턴한다
+
+URI 설계시 중요한건 자원이므로 잘 설계를 해야 한다 아래와 같이 설계하면 좋은 URI설계는 아니다
+삭제 : /member-delete
+삽입 : /member-insert
+
+조회 : /members
+특정 회원 조회 : /members/{id}
+등록 : POST /members
+삭제 : DELETE /members
+수정 : PUT(or PATCH) /members/{id}
+
+PUT VS PATCH
+PUT은 리소스를 대체하는 역할(전체 객체를 보내야함) 만약 리소스가 없으면 생성(중요)
+PATCH는 우리가 아는 UPDATE임
+
+참고로 HEAD : GET과 동일하지만 바디 부분을 제외하고 상태 줄과 헤더만 달라는 것
