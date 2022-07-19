@@ -39,3 +39,12 @@ PATCH는 우리가 아는 UPDATE임
 
 300번대는 영구적인 변경과 임시적인 변경이 있다(임시적인 변경의 경우는 POST REDIRECT GET 이다 -> 주문 후 메인 페이지로 이동 하는 행위)
 304는 Not Modified이다(캐시 목적으로 사용하는 것 -> 클라이언트에게 리소스가 수정되지 않았음을 알려준다)
+
+검증 헤더 : ETag,Last-Modified
+조건부 요청 헤더 : if-Match, if-None-Match : ETag 값 사용
+                : if_Modified-Since, if-Unmodified-Since: Last-Modified 값 사용
+
+no-cache는 원서버에 문제가 발생하면 이전의 데이터를 보여준다(잘못된 데이터를 보고 문제제기 가능)
+must-revalidate는 원서버에 문제가 발생하면 500번대 서버에러를 내보낸다
+
+참고로 캐시 무효화는 no-cache, no-start(캐시로 저장하지마라), must-revalidate가 있다
